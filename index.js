@@ -1,9 +1,4 @@
-require('dotenv').config({ path: './.env' });
-console.log(process.env);
-console.log(process.env.RESY_USERNAME);
-
 const puppeteer = require('puppeteer');
-
 // const prompt = require('prompt');
 
 const goToResy = async () => {
@@ -22,11 +17,12 @@ const loginToResy = async () => {
   await page.type('#email', 'your_email_here');
   await page.type('#password', 'your_password_here');
   await page.click('button[type="submit"]');
-};
+}
 
 async function makeReservation() {
   goToResy();
   // loginToResy();
+
 }
 
 const everythingElse = async () => {
@@ -72,5 +68,5 @@ const everythingElse = async () => {
       await browser.close();
     }
   });
-};
+}
 makeReservation();
