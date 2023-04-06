@@ -1,32 +1,53 @@
 require('dotenv').config({ path: './.env' });
-console.log(process.env);
-console.log(process.env.RESY_USERNAME);
+// console.log(process.env);
+// console.log(process.env.RESY_USERNAME);
 
 const puppeteer = require('puppeteer');
 
 // const prompt = require('prompt');
 
-const goToResy = async () => {
-  const browser = await puppeteer.launch({ headless: false });
-  const page = await browser.newPage();
-
-  // Navigate to Resy
-  await page.goto('https://resy.com');
+// CONSTANTS
+RESTAURANTS = {
+  'double chicken please': 'double-chicken-please',
 };
 
-const loginToResy = async () => {
+const goToResySite = async (page) => {
+  // Navigate to Resy
+  await page.goto('https://resy.com');
+
   // Find and click the login button
-  await page.click('a[href="/login"]');
+  await page.click(
+    '#page-wrapper > resy-nav > header > div.ResyNav__container.container > resy-menu-container > div > button'
+  );
+  // Click Continue to Username and Password (instead of Phone #)
+  await page.click(
+    'body > div.ReactModalPortal > div > div > div > div.AuthView > div.AuthView__Footer > button'
+  );
 
   // Fill in login credentials and submit
-  await page.type('#email', 'your_email_here');
-  await page.type('#password', 'your_password_here');
+  await page.type('#email', process.env.RESY_USERNAME);
+  await page.type('#password', process.env.RESY_PASSWORD);
   await page.click('button[type="submit"]');
 };
 
+const loginToResy = async (page) => {
+  // Find and click the login button
+  await page.click(
+    'body > div.ReactModalPortal > div > div > div > div.AuthView > div.AuthView__Footer > button'
+  );
+
+  // Fill in login credentials and submit
+  // await page.type('#email', process.env.RESY_USERNAME);
+  // await page.type('#password', process.env.RESY_PASSWORD);
+  // await page.click('button[type="submit"]');
+};
+
 async function makeReservation() {
-  goToResy();
-  // loginToResy();
+  const browser = await puppeteer.launch({ headless: false });
+  const page = await browser.newPage();
+
+  goToResySite(page);
+  // loginToResy(page);
 }
 
 const everythingElse = async () => {
