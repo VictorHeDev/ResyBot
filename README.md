@@ -25,3 +25,11 @@ Before using the Resy bot, you will need to add your Resy login credentials to t
 await page.type('#email', 'your_email_here');
 await page.type('#password', 'your_password_here');
 ```
+
+## Notes
+Dependencies that I am considering:
+* dotenv: library for loading environment variables from a .env file. This can be useful for storing sensitive information like login credentials and API keys
+* winston: powerful logging library
+* moment: library for working with dates and times in JavaScript. This can be useful for formatting reservation dates and times in a user-friendly way.
+* nodemailer: library for sending email messages from Node.js. This can be useful for sending confirmation emails or notifications when a reservation is made.
+* chalk: library for styling console output with colors and other formatting options. This can make your output easier to read and more visually appealing.
