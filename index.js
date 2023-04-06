@@ -1,5 +1,5 @@
 require('dotenv').config({ path: './.env' });
-// console.log(process.env);
+console.log(process.env);
 // console.log(process.env.RESY_USERNAME);
 
 const puppeteer = require('puppeteer');
