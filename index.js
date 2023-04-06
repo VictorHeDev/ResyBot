@@ -6,7 +6,7 @@ const puppeteer = require('puppeteer');
 // const prompt = require('prompt');
 
 // CONSTANTS
-RESTAURANTS = {
+const RESTAURANTS = {
   'double chicken please': 'double-chicken-please',
 };
 
@@ -29,24 +29,11 @@ const goToResySite = async (page) => {
   await page.click('button[type="submit"]');
 };
 
-const loginToResy = async (page) => {
-  // Find and click the login button
-  await page.click(
-    'body > div.ReactModalPortal > div > div > div > div.AuthView > div.AuthView__Footer > button'
-  );
-
-  // Fill in login credentials and submit
-  // await page.type('#email', process.env.RESY_USERNAME);
-  // await page.type('#password', process.env.RESY_PASSWORD);
-  // await page.click('button[type="submit"]');
-};
-
 async function makeReservation() {
   const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
 
   goToResySite(page);
-  // loginToResy(page);
 }
 
 const everythingElse = async () => {
@@ -92,5 +79,6 @@ const everythingElse = async () => {
       await browser.close();
     }
   });
-}
+};
+
 makeReservation();
