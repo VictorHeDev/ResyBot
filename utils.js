@@ -25,6 +25,11 @@ const checkDay = (day) => {
   return true;
 };
 
+const urlCreator = (restaurant, stringDate, seats) => {
+  const appendToUrl = `${restaurant}?${dateParser(stringDate)}&seats=${seats}`;
+  return `https://resy.com/cities/ny/${appendToUrl}`;
+};
+
 module.exports = dateParser;
 
 // function sum(a, b) {
